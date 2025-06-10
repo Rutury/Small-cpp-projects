@@ -26,7 +26,7 @@
         "label": "test",
         "group": "test",
         "type": "shell",
-        "command": "$numTests = (ls ../tests/input).count; rm ../tests/output/*; $testsPassed = 0; $testsFailed = 0; for ($i = 1; $i -le $numTests; $i++) { cat ../tests/input/$i.txt | ./main.exe >> ../tests/output/$i.txt; if ((cat ../tests/output/$i.txt) -ne (cat ../tests/answer/$i.txt)) { Write-Host \"Test $i failed\"; $testsFailed++ } else { Write-Host \"Test $i passed\"; $testsPassed++ }  }; Write-Host \"Tests passed: $testsPassed\"; Write-Host \"Tests failed: $testsFailed\"",
+        "command": "numTests=$(find ../tests/input -type f | wc -l); rm -f ../tests/output/*; testsPassed=0; testsFailed=0; for ((i=1; i <= $numTests; i++)) do ./main.exe < ../tests/input/$i.txt > ../tests/output/$i.txt; if cmp -s ../tests/output/$i.txt ../tests/answer/$i.txt; then echo \"Test $i passed\"; ((testsPassed++)); else echo \"Test $i failed\"; ((testsFailed++)); fi; done; echo \"Tests passed: $testsPassed\"; echo \"Tests failed: $testsFailed\"",
         "problemMatcher": []
     }
     ]
