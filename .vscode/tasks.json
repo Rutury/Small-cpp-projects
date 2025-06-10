@@ -5,8 +5,8 @@
     {
         "label": "build",
         "type": "shell",
-        "command": "g++",
-        "args": [ "../main.cpp", "-o", "main.exe", "-Werror", "-Wall", "-Wextra", "-Wpedantic" ],
+        "command": "clang++",
+        "args": [ "-std=c++20", "-O2", "-x", "c++", "../main.cpp", "-o", "main.exe", "-Werror", "-Wall", "-Wextra", "-Wpedantic" ],
         "group": "build",
         "problemMatcher": ["$gcc"],
     },
